@@ -2,7 +2,7 @@
 ##
 ## Description
 ##   Creates Plot #4 for programming assignment 1 for the Exploratory Data Analysis course
-##   Data file used is the  ìIndividual household electric power consumption Data Setî 
+##   Data file used is the  ‚ÄúIndividual household electric power consumption Data Set‚Äù 
 ##   from the UC Irvine Machine Learning Repository.
 ##
 ## Usage: MakePlot4(<DATA_FILE_TO_READ>[,<PNG_FILE_TO_WRITE>])
@@ -56,6 +56,7 @@ LoadData <- function(filespec) {
   rawData <- read.table(filespec, header = TRUE, sep = ";", na.strings = c("?"), colClasses = colTypes)
   
   subsetData <- rawData[rawData$Date == "1/2/2007" | rawData$Date == "2/2/2007",]
+  rm(rawData)
   Timestamp <- strptime(paste(subsetData$Date, subsetData$Time), "%d/%m/%Y %H:%M:%S")
   
   data <- cbind(Timestamp, subset(subsetData, select = -c(Date, Time)))
